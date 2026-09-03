@@ -1,8 +1,17 @@
 import ItemForm from "../components/ItemForm";
+import { createItem } from "../api/itemApi";
 
 function AddItemPage() {
-  const handleAddItem = (formData) => {
-    console.log("Submitted item:", formData);
+  const handleAddItem = async (formData) => {
+    try {
+      const savedItem = await createItem(formData);
+
+      console.log("Saved item:", savedItem);
+      alert("Item added successfully");
+    } catch (error) {
+      console.error("Error adding item:", error);
+      alert("Failed to add item");
+    }
   };
 
   return (
